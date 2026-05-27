@@ -1,0 +1,49 @@
+
+syntax = "proto3";
+
+package org.example.grpcExample;  // Match the Java package name
+
+option java_multiple_files = true;
+option java_package = "org.example.grpcExample";
+option java_outer_classname = "EmployeeProto";
+
+// Import necessary protobuf types for advanced features
+import "google/protobuf/timestamp.proto";  // For timestamp
+
+message Employee{
+  int32 id=1;
+  string name=2;
+  double salary=3;
+  repeated Department departments=4;
+  map<string, string> address_map = 5;
+  bool isActive = 6;
+  bytes profile_picture = 7;
+  google.protobuf.Timestamp joinDate = 8;
+}
+
+message Department{
+  int32 id=1;
+  string name=2;
+}
+
+message EmployeeList {
+  repeated Employee employees = 1; // List of employees
+}
+
+// Define an empty message for RPCs with no input
+message Empty {}
+
+//----------------------SERVICE/INTERFACE-------------------------------
+
+// Define the EmployeeService
+service EmployeeService {
+  // RPC to get an employee by ID
+  rpc GetEmployee (Employee) returns (Employee);
+
+  // RPC to add a new employee
+  rpc AddEmployee (Employee) returns (Employee);
+
+  // RPC to get a list of all employees
+  rpc ListEmployees (Empty) returns (EmployeeList);
+}
+
