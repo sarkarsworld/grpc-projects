@@ -1,0 +1,7 @@
+spring:
+  grpc:
+    client:
+      channels:
+        stockTradeServer: # This is the custom name for your channel configuration
+          address: "static://localhost:9090"
+          secure: false # Set to true if using TLS/SSL
