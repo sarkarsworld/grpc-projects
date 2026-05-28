@@ -1,0 +1,26 @@
+
+syntax = "proto3";
+
+package grpcStockTradingServer;
+
+option java_multiple_files = true;
+option java_package = "com.example.generated.stockTrade";
+option java_outer_classname = "StockTradeOuterClass";
+
+// -------------------- services
+service StockTradingService {
+
+  // Unary gRPC Service - get current stock price.
+  rpc getStockPrice(StrockRequest) returns (StockResponse);
+}
+
+// --------------------- messages
+message StrockRequest {
+  string stock_name = 1;
+}
+
+message StockResponse {
+  string stock_name = 1;
+  double price = 2;
+  string timestamp = 3;
+}
