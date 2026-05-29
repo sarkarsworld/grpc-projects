@@ -17,4 +17,11 @@ public class GrpcClientConfig {
         return StockTradingServiceGrpc.newBlockingStub(channel);
     }
 
+    @Bean
+    public StockTradingServiceGrpc.StockTradingServiceStub stockTradingServiceStub(GrpcChannelFactory channelFactory){
+        // "stockTradeServer" matches the name configured in your application.yml
+        Channel channel = channelFactory.createChannel("stockTradeServer");
+        return StockTradingServiceGrpc.newStub(channel);
+    }
+
 }

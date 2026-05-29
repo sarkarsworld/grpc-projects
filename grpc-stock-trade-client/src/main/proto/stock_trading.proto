@@ -11,11 +11,14 @@ option java_outer_classname = "StockTradeOuterClass";
 service StockTradingService {
 
   // Unary gRPC Service - get current stock price.
-  rpc getStockPrice(StrockRequest) returns (StockResponse);
+  rpc getStockPrice(StockRequest) returns (StockResponse);
+
+  // Server Side Streaming - get a stream of StockResponses
+  rpc subscribeStockPrice(StockRequest) returns (stream StockResponse);
 }
 
 // --------------------- messages
-message StrockRequest {
+message StockRequest {
   string stock_name = 1;
 }
 

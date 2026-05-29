@@ -21,6 +21,10 @@ public class GrpcStockTradeClientApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        System.out.println("Stock Details : " + stockTradeClientService.getStockPrice("Apple"));
+        // Example for Unary gRPC call.
+        // System.out.println("Stock Details : " + stockTradeClientService.getStockPrice("Apple"));
+
+        // Example for Server Stream gRPC call.
+        stockTradeClientService.getSubscribeStockPrice("Apple");
     }
 }
